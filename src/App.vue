@@ -1,8 +1,8 @@
 <template>
     <nav>
-        <router-link to="/">Home</router-link>
+        <router-link to="/">User</router-link>
         |
-        <router-link to="/user">User</router-link>
+        <router-link to="/login">Login</router-link>
     </nav>
     <router-view></router-view>
 </template>
@@ -14,11 +14,11 @@
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
-    /*background-color: red;*/
 }
 
 nav {
-    padding: 30px;
+    padding: 20px;
+    background-color: blanchedalmond;
 }
 
 nav a {
