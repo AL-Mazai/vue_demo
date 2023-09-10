@@ -3,6 +3,8 @@
         <router-link to="/">User</router-link>
         |
         <router-link to="/login">Login</router-link>
+        |
+        <router-link to="/doc">Document</router-link>
     </nav>
     <router-view></router-view>
 </template>

@@ -44,6 +44,7 @@
             <!--顶部-->
             <el-header style="text-align: right; font-size: 12px">
                 <div class="toolbar">
+<!--                    设置-->
                     <el-dropdown>
                         <el-icon style="margin-right: 8px; margin-top: 1px">
                             <setting/>
@@ -61,15 +62,19 @@
             </el-header>
             <!--主窗口-->
             <el-main>
-<!--                显示用户信息-->
+                <!-- 显示用户信息-->
                 <el-scrollbar>
                     <el-table :data="users" border style="width: 90%;">
-                        <el-table-column prop="userId" label="id"/>
-                        <el-table-column prop="userName" label="name"/>
+                        <el-table-column prop="userId" label="编号"/>
+                        <el-table-column prop="userName" label="名称"/>
+                        <el-table-column prop="userDate" label="创建时间"/>
+                        <el-table-column prop="userAddress" label="地址"/>
                         <el-table-column label="操作" width="160px">
                             <template #default="scope">
-                                <el-button type="primary" style="width: 60px;" @click="editUser(scope.row)">编辑</el-button>
-                                <el-button type="danger" style="width: 60px;" @click="delUser(scope.row)">删除</el-button>
+                                <el-button type="primary" style="width: 60px;" @click="editUser(scope.row)">编辑
+                                </el-button>
+                                <el-button type="danger" style="width: 60px;" @click="DeleteUser(scope.$index, scope.row)">删除
+                                </el-button>
                             </template>
                         </el-table-column>
                     </el-table>
@@ -101,7 +106,7 @@
     </el-container>
 </template>
 
-<script>
+<script >
 import axios from 'axios'
 
 export default {
@@ -115,15 +120,17 @@ export default {
                 userId: '',
                 userName: '',
             },
+            dialogVisible:false,
+            icon:'',
         }
     },
     created() {
-        this.showUsers()
+        this.showusers()
     },
     methods: {
-        showUsers() {
+        showusers() {
             const vm = this
-            axios.get('http://localhost:8084/get').then(function (resp) {
+            axios.get('http://localhost:8084/ListUser').then(function (resp) {
                 vm.users = resp.data;
             })
         },
@@ -131,7 +138,7 @@ export default {
             this.currentUserData = user;
             this.editDialogVisible = true
         },
-        delUser() {
+        DeleteUser() {
 
         },
         submitEditForm() {
@@ -139,7 +146,6 @@ export default {
         }
     }
 }
-
 </script>
 
 <style scoped>
